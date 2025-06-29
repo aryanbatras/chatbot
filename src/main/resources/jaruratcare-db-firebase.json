@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "jaruratcare-db",
+  "private_key_id": "54a86a38abc588013d549dbcdd385d1036b25587",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCrPyhKOVJWFN5/\nmK1CL95+Zwzcwmvw2o2CiQd+ttjY6jJQMmfal+/94Zq1kTzEPdmuAsXFvqFveSLF\no4WrzP/f1NpJy/PY4kBMXEJOb+HwQSE+f/kTKAgWsjtPvdlLDGuthIu/97EZqOoM\niKyJpQuIuShdBFFsbhm1qUWPm550hWSU2ITWlA+KX+iEhVncIv8V94O1bBTGWoHZ\nDqmaqClC0KdJz0SO3wb+AKMkTahpsRssY/0MqMJIyzf2uIVY5aid6AmKNvKhTFTN\nQXe5083ComnPaH6EhKPIJp8ct0f9KjOut4TkEI2gDyy6ZpBjREyfA0gEiMz9WbEV\nTAhxBgQBAgMBAAECggEAJoXrs17XxeOl9gBLoaMRI1BdVWArViBkSyQ2WmwZthph\nPSdJs6QQagWRfxzwFZlwWbPn98cdm+0dRGa30GEqgpjojkdiULz9B/CNPgXvRtPv\n/ZZeWs/bmfd4XkTwF/DwXDWAFqxK2+Hi3PT2E3TcdmJo0RwCkSjngbVVn6u7Zqyo\nOc0cNus2nEu8fqmWYZmnZR+Em44n+5dZ6HXcqhrn/asKN1Gdnxc0rI10SoWejGO5\nwmqlQ0/JAEotb8PJu7XUtpVqgmCOR6yVs9uwsk5LaQNr2jZQXGEI8KUvd6nrb+45\n/KVHUvNUkXXilpeJm3yeYQwBs96rb1X/WdHkJSnK0QKBgQDxsw5k1GD5FLODOkmG\no3+aWE4SJxVg2j8th+/fUHloDPwIT9HqMmof8jcU5KojmkS0rNHkAL82oNAhkUy3\nAylQCeC1EGsp7Ky3ygBYVYG+ffRNWDE76GxzbDWdni9+MBCBD97zYjeBKJBBf1Gv\n5N+wspa6sq23H1FSUxIB5hhJNQKBgQC1YPntpuie98tk9AB0yqcpYGr0YFzJzjeb\nX9Tru9aulf4oeihUkQ5EWRKyPrPf5w0jUFm40KXEijcsGjaGKSbv86+EixtjJ+gV\nuIMdPSE4Gnz0nwvf4eQ/Q15zRFYbjeaPyklZZkwCBGXuVKgjlqWWkFXKvS1i5QpS\nBD21Fh71HQKBgCg5j4yyV808Z7/QRIpWzZbHWX7l6EXtLJSMShyVTQ9HEe7kMeBT\nMZxNeGNOxw4Tz5luJaRXh3s0+k6L2wOeUBLVAgPATsV0cS5JPRN2b5hfZ/gzVEZP\nITV4bdfkiqzqnOSN2qIQ14H0WUW9RcALTDshDbrWn9iZKrSTxKxyOdp9AoGABHx6\nkhM/y7bLVBro6/qbOd3Fp3e+s8si+vfa113VCIpzN+MVnkncNXqSiNAeONqJK6dw\nIK8geoUEqlWXpafc67B2Vevu6HvzNJ5Ut+NsL+wPzSkl7Qq0T5BGBMna62GOI15Y\nhBqQpLghIUz8v6yZOekmBha5yalqoO6z7Ae5Ck0CgYAuUXCeXQemkIFQ0aLlzaLP\noD2CrW5kqJ6zBLnxgZWYb2rBEj/0ROm0tbGInrE+byaizfhZ3CWuYK/g+EbPdahB\nFu7DMp+LZPz7SzCfD/7eKjOOdRxSHmkW4AYudy8dw97MDUfY3I0ZGHPMzENM/X6u\nNSLCMlyNpKQKI4mCHL8n5A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@jaruratcare-db.iam.gserviceaccount.com",
+  "client_id": "114312143310870832660",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40jaruratcare-db.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

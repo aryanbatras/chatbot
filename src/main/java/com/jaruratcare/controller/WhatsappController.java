@@ -1,5 +1,6 @@
 package com.jaruratcare.controller;
 
+import com.jaruratcare.service.FirebaseService;
 import org.springframework.http.ResponseEntity;
 import com.jaruratcare.service.WhatsappService;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class WhatsappController {
 
     @Autowired
     private WhatsappService service;
+
+    @Autowired
+    private FirebaseService firebaseService;
 
     @GetMapping("/health")
     public String health() {
@@ -62,6 +66,7 @@ public class WhatsappController {
 
             new Thread(() -> {
                 service.sendTextMessage(from, "Okay, we'll get back to you shortly");
+                firebaseService.save(from, text);
             }).start();
 
             return response;
