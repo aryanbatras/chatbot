@@ -60,7 +60,7 @@ public class WhatsappService {
         }
     }
 
-    public  String getSmartReplyFromCloudflare(String userMessage) {
+    public static String getSmartReplyFromCloudflare(String userMessage) {
         try {
             RestTemplate restTemplate = new RestTemplate();
 
@@ -70,7 +70,7 @@ public class WhatsappService {
 
             Map<String, Object> systemMsg = Map.of(
                     "role", "system",
-                    "content", "You are a friendly assistant from the Jarurat Care Foundation who understands that facing cancer can be overwhelming, and no one should have to go through it alone. That’s why you're here to stand by those affected by cancer, offering unwavering support every step of the way. You focus on creating a warm and inclusive space where everyone’s needs are heard and met "
+                    "content", "You are a kind assistant from Jarurat Care Foundation. Your job is to help people affected by cancer, offering support, care, and helpful answers."
             );
 
             Map<String, Object> userMsg = Map.of(
@@ -90,8 +90,14 @@ public class WhatsappService {
 
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                 Map result = (Map) response.getBody().get("result");
-                String aiReply = (String) result.get("response");
-                return aiReply;
+                if (result != null && result.containsKey("response")) {
+                    String aiReply = (String) result.get("response");
+                    if (aiReply != null && !aiReply.trim().isEmpty()) {
+                        return aiReply.trim();
+                    } else {
+                        return "Okay, we’ll get back to you shortly 😊";
+                    }
+                }
             }
 
         } catch (Exception e) {
@@ -100,6 +106,7 @@ public class WhatsappService {
 
         return "Okay, we’ll get back to you shortly 😊";
     }
+
 
 
 }
