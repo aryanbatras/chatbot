@@ -65,7 +65,8 @@ public class WhatsappController {
             ResponseEntity<String> response = ResponseEntity.ok("Received");
 
             new Thread(() -> {
-                service.sendTextMessage(from, "Okay, we'll get back to you shortly");
+                String aiReply = service.getSmartReplyFromCloudflare(text);
+                service.sendTextMessage(from, aiReply);
                 firebaseService.save(from, text);
             }).start();
 
@@ -75,6 +76,5 @@ public class WhatsappController {
             return ResponseEntity.ok("Ignored");
         }
     }
-
 
 }
