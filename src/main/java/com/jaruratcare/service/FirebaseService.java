@@ -18,8 +18,10 @@ public class FirebaseService {
             System.out.println("📞 From: " + from);
             System.out.println("💬 Text: " + text);
 
-            Firestore db = FirestoreClient.getFirestore();
             System.out.println("Getting firestore client" );
+            System.out.println("Apps: " + FirebaseApp.getApps());
+            System.out.println("Is default app initialized? " + FirebaseApp.getInstance().getName());
+            Firestore db = FirestoreClient.getFirestore();
 
             if (db == null) {
                 System.out.println("❌ Firestore DB is null! Firebase may not be initialized.");

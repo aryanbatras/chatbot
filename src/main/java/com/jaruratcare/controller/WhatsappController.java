@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api")
@@ -45,35 +46,31 @@ public class WhatsappController {
     }
 
     @PostMapping("/webhook")
-    public ResponseEntity<String> receiveMessage(@RequestBody Map<String, Object> body) {
-        try {
-            Map entry = ((List<Map>) body.get("entry")).get(0);
-            Map changes = ((List<Map>) entry.get("changes")).get(0);
-            Map value = (Map) changes.get("value");
-
-            Map message = ((List<Map>) value.get("messages")).get(0);
-            Map contact = ((List<Map>) value.get("contacts")).get(0);
-
-            String from = (String) message.get("from");
-            String text = (String) ((Map) message.get("text")).get("body");
-
-            System.out.println("📥 Message received!");
-            System.out.println("📞 From: " + from);
-            System.out.println("💬 Text: " + text);
-
-            String aiReply = service.getSmartReplyFromCloudflare(text);
-
-            int statusCode = service.sendTextMessage(from, aiReply);
-            System.out.println("📤 WhatsApp send status: " + statusCode);
-
-            firebaseService.save(from, text);
-
-            return ResponseEntity.ok("Message processed");
-
-        } catch (Exception e) {;
-            return ResponseEntity.ok("Ignored");
-        }
+    public ResponseEntity<Void> receiveMessage(@RequestBody Map<String, Object> body) {
+        ResponseEntity<Void> response = ResponseEntity.ok().build();
+        CompletableFuture.runAsync(() -> processMessage(body));
+        return response;
     }
 
+    private void processMessage(Map<String, Object> body) {
+        Map entry = ((List<Map>) body.get("entry")).get(0);
+        Map changes = ((List<Map>) entry.get("changes")).get(0);
+        Map value = (Map) changes.get("value");
+
+        Map message = ((List<Map>) value.get("messages")).get(0);
+        Map contact = ((List<Map>) value.get("contacts")).get(0);
+
+        String from = (String) message.get("from");
+        String text = (String) ((Map) message.get("text")).get("body");
+
+        System.out.println("📥 Message received!");
+        System.out.println("📞 From: " + from);
+        System.out.println("💬 Text: " + text);
+
+        String aiReply = service.getSmartReplyFromCloudflare(text);
+        int statusCode = service.sendTextMessage(from, aiReply);
+        System.out.println("📤 WhatsApp send status: " + statusCode);
+        firebaseService.save(from, text);
+    }
 
 }
