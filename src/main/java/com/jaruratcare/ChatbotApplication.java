@@ -13,7 +13,6 @@ import java.io.*;
 public class ChatbotApplication {
 
 	public static void main(String[] args) {
-		firebaseInitializer();
 		SpringApplication.run(ChatbotApplication.class, args);
 	}
 

@@ -31,9 +31,8 @@ public class FirebaseService {
             DocumentReference ref = db.collection("messages").document();
             System.out.println("📂 Firebase doc reference created: " + ref.getId());
 
-            ref.set(data);
-            System.out.println("✅ Message saved to Firebase");
-
+            ref.set(data).get();
+            System.out.println("✅ Message saved to Firebase (confirmed)");
         } catch (Exception e) {
             System.out.println("❌ Firebase write failed");
             e.printStackTrace();
