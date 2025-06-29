@@ -24,11 +24,15 @@ public class FirebaseInitializer {
             String base64Creds = System.getenv("FIREBASE_CREDENTIALS_BASE64");
             System.out.println("Base64: " + base64Creds );
 
-            byte[] decodedBytes = Base64.getDecoder().decode(base64Creds);
-            System.out.println("Decoded bytes " + decodedBytes );
+            String decodedJson = new String(Base64.getDecoder().decode(base64Creds), StandardCharsets.UTF_8);
+
+            decodedJson = decodedJson.replace("\\n", "\n");
+            System.out.println("Decoded bytes after replacing" + decodedJson );
+
+            InputStream stream = new ByteArrayInputStream(decodedJson.getBytes(StandardCharsets.UTF_8));
 
             GoogleCredentials credentials = GoogleCredentials
-                    .fromStream(new ByteArrayInputStream(decodedBytes));
+                    .fromStream(stream);
             System.out.println("GoogleCredentials done" );
 
             FirebaseOptions options = FirebaseOptions.builder()

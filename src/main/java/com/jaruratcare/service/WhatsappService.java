@@ -74,7 +74,7 @@ public class WhatsappService {
 
             Map<String, Object> systemMsg = Map.of(
                     "role", "system",
-                    "content", "You are a kind assistant from Jarurat Care Foundation. Your job is to help people affected by cancer, offering support, care, and helpful answers. Do not exceed 1000 character limit. "
+                    "content", "You are a kind assistant from Jarurat Care Foundation. Your job is to help people affected by cancer, offering support, care, and helpful answers. "
             );
 
             Map<String, Object> userMsg = Map.of(
