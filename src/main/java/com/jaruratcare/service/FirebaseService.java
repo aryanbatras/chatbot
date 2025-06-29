@@ -2,6 +2,7 @@ package com.jaruratcare.service;
 
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,15 @@ public class FirebaseService {
             System.out.println("💬 Text: " + text);
 
             Firestore db = FirestoreClient.getFirestore();
+            System.out.println("Getting firestore client" );
+
             if (db == null) {
                 System.out.println("❌ Firestore DB is null! Firebase may not be initialized.");
+                return;
+            }
+
+            if (FirebaseApp.getApps().isEmpty()) {
+                System.out.println("🚫 FirebaseApp not initialized. Skipping save.");
                 return;
             }
 
