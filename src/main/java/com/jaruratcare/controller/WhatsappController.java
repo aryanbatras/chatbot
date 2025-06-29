@@ -47,7 +47,6 @@ public class WhatsappController {
     @PostMapping("/webhook")
     public ResponseEntity<String> receiveMessage(@RequestBody Map<String, Object> body) {
         try {
-
             Map entry = ((List<Map>) body.get("entry")).get(0);
             Map changes = ((List<Map>) entry.get("changes")).get(0);
             Map value = (Map) changes.get("value");
@@ -62,17 +61,21 @@ public class WhatsappController {
             System.out.println("📞 From: " + from);
             System.out.println("💬 Text: " + text);
 
-            ResponseEntity<String> response = ResponseEntity.ok("Received");
-
             String aiReply = service.getSmartReplyFromCloudflare(text);
-            service.sendTextMessage(from, aiReply);
+
+            int statusCode = service.sendTextMessage(from, aiReply);
+            System.out.println("📤 WhatsApp send status: " + statusCode);
+
             firebaseService.save(from, text);
 
-            return response;
+            return ResponseEntity.ok("Message processed");
 
         } catch (Exception e) {
+            System.out.println("❌ Error in webhook processing");
+            e.printStackTrace();
             return ResponseEntity.ok("Ignored");
         }
     }
+
 
 }
