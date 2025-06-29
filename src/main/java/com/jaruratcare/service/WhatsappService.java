@@ -88,24 +88,37 @@ public class WhatsappService {
 
             ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
 
+            System.out.println("🧠 Cloudflare raw response: " + response.getBody());
+
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-                Map result = (Map) response.getBody().get("result");
-                if (result != null && result.containsKey("response")) {
-                    String aiReply = (String) result.get("response");
-                    if (aiReply != null && !aiReply.trim().isEmpty()) {
-                        return aiReply.trim();
-                    } else {
-                        return "Okay, we’ll get back to you shortly 😊";
+                Object resultObj = response.getBody().get("result");
+
+                if (resultObj instanceof Map) {
+                    Map result = (Map) resultObj;
+                    Object replyObj = result.get("response");
+
+                    if (replyObj instanceof String) {
+                        String aiReply = ((String) replyObj).trim();
+                        if (!aiReply.isEmpty()) {
+                            System.out.println("✅ AI Reply: " + aiReply);
+                            return aiReply;
+                        }
                     }
+                } else {
+                    System.out.println("⚠️ 'result' was not a map or was null: " + resultObj);
                 }
+            } else {
+                System.out.println("❌ Non-200 response from Cloudflare: " + response.getStatusCode());
             }
 
         } catch (Exception e) {
             System.out.println("⚠️ AI fallback triggered: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return "Okay, we’ll get back to you shortly 😊";
     }
+
 
 
 
