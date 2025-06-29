@@ -60,7 +60,7 @@ public class WhatsappService {
         }
     }
 
-    public static String getSmartReplyFromCloudflare(String userMessage) {
+    public  String getSmartReplyFromCloudflare(String userMessage) {
         try {
             RestTemplate restTemplate = new RestTemplate();
 
