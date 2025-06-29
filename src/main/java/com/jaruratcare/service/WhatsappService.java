@@ -29,6 +29,10 @@ public class WhatsappService {
 
     public int sendTextMessage(String number, String message){
 
+        if (message.length() > 1000) {
+            message = message.substring(0, 1000) + "...";
+        }
+
         try{
             URL ob = new URL(url);
             HttpsURLConnection connection;
@@ -70,7 +74,7 @@ public class WhatsappService {
 
             Map<String, Object> systemMsg = Map.of(
                     "role", "system",
-                    "content", "You are a kind assistant from Jarurat Care Foundation. Your job is to help people affected by cancer, offering support, care, and helpful answers."
+                    "content", "You are a kind assistant from Jarurat Care Foundation. Your job is to help people affected by cancer, offering support, care, and helpful answers. Do not exceed 1000 character limit. "
             );
 
             Map<String, Object> userMsg = Map.of(
@@ -100,7 +104,6 @@ public class WhatsappService {
                     if (replyObj instanceof String) {
                         String aiReply = ((String) replyObj).trim();
                         if (!aiReply.isEmpty()) {
-                            System.out.println("✅ AI Reply: " + aiReply);
                             return aiReply;
                         }
                     }

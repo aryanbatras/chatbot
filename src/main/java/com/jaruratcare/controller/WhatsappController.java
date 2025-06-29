@@ -70,9 +70,7 @@ public class WhatsappController {
 
             return ResponseEntity.ok("Message processed");
 
-        } catch (Exception e) {
-            System.out.println("❌ Error in webhook processing");
-            e.printStackTrace();
+        } catch (Exception e) {;
             return ResponseEntity.ok("Ignored");
         }
     }

@@ -12,25 +12,34 @@ import java.util.Map;
 public class FirebaseService {
 
     public void save(String from, String text){
-        try{
-            Firestore db = FirestoreClient.getFirestore();
-            Map<String, Object> data = new HashMap<>();
+        try {
+            System.out.println("📝 Attempting to save message to Firebase");
+            System.out.println("📞 From: " + from);
+            System.out.println("💬 Text: " + text);
 
+            Firestore db = FirestoreClient.getFirestore();
+            if (db == null) {
+                System.out.println("❌ Firestore DB is null! Firebase may not be initialized.");
+                return;
+            }
+
+            Map<String, Object> data = new HashMap<>();
             data.put("number", from);
             data.put("message", text);
             data.put("timestamp", System.currentTimeMillis());
 
             DocumentReference ref = db.collection("messages").document();
-            ref.set(data);
+            System.out.println("📂 Firebase doc reference created: " + ref.getId());
 
+            ref.set(data);
             System.out.println("✅ Message saved to Firebase");
 
         } catch (Exception e) {
             System.out.println("❌ Firebase write failed");
             e.printStackTrace();
         }
-
     }
+
 
 
 }
